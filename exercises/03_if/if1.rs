@@ -4,10 +4,18 @@ fn bigger(a: i32, b: i32) -> i32 {
     // Do not use:
     // - another function call
     // - additional variables
+    if a > b {
+        return a;
+    } else if a < b {
+        return b;
+    }
+    return a;
 }
 
 fn main() {
-    // You can optionally experiment here.
+    let x = 10;
+    let z = 15;
+    print!("{}", bigger(x, z));
 }
 
 // Don't mind this for now :)
