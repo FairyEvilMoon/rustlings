@@ -1,6 +1,6 @@
 DON'T EDIT THIS FILE!
 
-functions5
+traits1
 
 intro1
 intro2
@@ -24,5 +24,11 @@ move_semantics4
 move_semantics5
 options1
 options2
+errors1
+errors2
+errors3
+errors4
+errors5
+errors6
 generics1
 generics2
