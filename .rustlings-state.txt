@@ -1,6 +1,6 @@
 DON'T EDIT THIS FILE!
 
-traits1
+iterators1
 
 intro1
 intro2
@@ -22,6 +22,9 @@ move_semantics1
 move_semantics2
 move_semantics4
 move_semantics5
+hashmaps1
+hashmaps2
+hashmaps3
 options1
 options2
 errors1
@@ -32,3 +35,6 @@ errors5
 errors6
 generics1
 generics2
+tests1
+tests2
+tests3
