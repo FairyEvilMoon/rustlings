@@ -1,6 +1,6 @@
 DON'T EDIT THIS FILE!
 
-quiz3
+iterators1
 
 intro1
 intro2
@@ -22,6 +22,9 @@ move_semantics1
 move_semantics2
 move_semantics4
 move_semantics5
+modules1
+modules2
+modules3
 hashmaps1
 hashmaps2
 hashmaps3
@@ -40,6 +43,9 @@ traits2
 traits3
 traits4
 traits5
+lifetimes1
+lifetimes2
+lifetimes3
 tests1
 tests2
 tests3
