@@ -27,8 +27,8 @@ mod tests {
     fn reference_mutation() {
         // Clone occurs because `input` needs to be mutated.
         let vec = vec![-1, 0, 1];
-        let mut input = Cow::from(&vec);
-        abs_all(&mut input);
+        let mut input = Cow::from(&vec); // Starts as Borrowed
+        abs_all(&mut input); // to_mut() is called, clones data, becomes Owned
         assert!(matches!(input, Cow::Owned(_)));
     }
 
@@ -36,10 +36,10 @@ mod tests {
     fn reference_no_mutation() {
         // No clone occurs because `input` doesn't need to be mutated.
         let vec = vec![0, 1, 2];
-        let mut input = Cow::from(&vec);
-        abs_all(&mut input);
+        let mut input = Cow::from(&vec); // Starts as Borrowed
+        abs_all(&mut input); // to_mut() is never called, remains Borrowed
         // TODO: Replace `todo!()` with `Cow::Owned(_)` or `Cow::Borrowed(_)`.
-        assert!(matches!(input, todo!()));
+        assert!(matches!(input, Cow::Borrowed(_))); // Remains borrowed as no mutation needed
     }
 
     #[test]
@@ -49,10 +49,10 @@ mod tests {
         // also no clone. But the result is still owned because it was never
         // borrowed or mutated.
         let vec = vec![0, 1, 2];
-        let mut input = Cow::from(vec);
-        abs_all(&mut input);
+        let mut input = Cow::from(vec); // Starts as Owned
+        abs_all(&mut input); // to_mut() is never called, remains Owned
         // TODO: Replace `todo!()` with `Cow::Owned(_)` or `Cow::Borrowed(_)`.
-        assert!(matches!(input, todo!()));
+        assert!(matches!(input, Cow::Owned(_))); // Was owned initially, remains owned
     }
 
     #[test]
@@ -61,9 +61,9 @@ mod tests {
         // numbers are absolute). In this case, the call to `to_mut()` in the
         // `abs_all` function returns a reference to the same data as before.
         let vec = vec![-1, 0, 1];
-        let mut input = Cow::from(vec);
-        abs_all(&mut input);
+        let mut input = Cow::from(vec); // Starts as Owned
+        abs_all(&mut input); // to_mut() is called, but since already owned, no clone happens. Mutates in place. Remains Owned.
         // TODO: Replace `todo!()` with `Cow::Owned(_)` or `Cow::Borrowed(_)`.
-        assert!(matches!(input, todo!()));
+        assert!(matches!(input, Cow::Owned(_))); // Was owned initially, remains owned even after mutation
     }
 }

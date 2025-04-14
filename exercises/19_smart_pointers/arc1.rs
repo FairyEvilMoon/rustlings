@@ -23,15 +23,16 @@ fn main() {
     let numbers: Vec<_> = (0..100u32).collect();
 
     // TODO: Define `shared_numbers` by using `Arc`.
-    // let shared_numbers = ???;
+    let shared_numbers = Arc::new(numbers); // Wrap the vector in an Arc
 
     let mut join_handles = Vec::new();
 
     for offset in 0..8 {
         // TODO: Define `child_numbers` using `shared_numbers`.
-        // let child_numbers = ???;
+        let child_numbers = Arc::clone(&shared_numbers); // Clone the Arc for the new thread
 
-        let handle = thread::spawn(move || {
+        let handle = thread::spawn(move || { // The 'move' keyword takes ownership of child_numbers
+            // Access the vector through the Arc using Deref coercion
             let sum: u32 = child_numbers.iter().filter(|&&n| n % 8 == offset).sum();
             println!("Sum of offset {offset} is {sum}");
         });
